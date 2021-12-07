@@ -9,7 +9,7 @@ let cartItemID = 1;
 
 eventListeners();
 
-// all event listeners
+
 function eventListeners(){
     window.addEventListener('DOMContentLoaded', () => {
         loadJSON();
@@ -90,7 +90,7 @@ function getProductInfo(product){
     saveProductInStorage(productInfo);
 }
 
-// adicionar produto ao carrinho
+// ilustrar produto ao carrinho
 function addToCartList(product){
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
@@ -118,7 +118,7 @@ function saveProductInStorage(item){
     updateCartInfo();
 }
 
-
+// contador
 function getProductFromStorage(){
     return localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
     
@@ -128,15 +128,15 @@ function getProductFromStorage(){
 function loadCart(){
     let products = getProductFromStorage();
     if(products.length < 1){
-        cartItemID = 1; // if there is no any product in the local storage
+        cartItemID = 0;
     } else {
         cartItemID = products[products.length - 1].id;
         cartItemID++;
-        // else get the id of the last product and increase it by 1
+        
     }
     products.forEach(product => addToCartList(product));
 
-    // calculate and update UI of cart info 
+    // calcula e adiciona um ao contador 
     updateCartInfo();
 }
 
